@@ -114,7 +114,7 @@ class image(object):
 
   # Problem 3, Gabe initial solution, Grace Optimize or add
   #background underlay
-  def GreenScreen(self):
+  def chromaKey(self):
     assert(self.pic)
     pixels = getPixels(self.pic)
     for p in pixels:
@@ -158,7 +158,7 @@ def main():
 
   #Problem 3,
   green_Screen_test_image = image()
-  green_Screen_test_image.GreenScreen()
+  green_Screen_test_image.chromaKey()
   green_Screen_test_image.displayPic()
 
 # This way we will run by clicking the load button instead
