@@ -111,7 +111,30 @@ class image(object):
       setRed(p, artRange(getRed(p)))
       setGreen(p, artRange(getGreen(p)))
       setBlue(p, artRange(getBlue(p)))
-
+    if r < 64:
+      setRed (p, 31)
+    elif r < 128:
+      setRed (p, 95)      
+    elif r < 192:
+      setRed (p, 159)
+    else:
+      setRed (p, 223)
+    if g < 64:
+      setGreen (p, 31)
+    elif g < 128:
+      setGreen (p, 95)      
+    elif g < 192:
+      setGreen (p, 159)
+    else:
+      setGreen(p, 223)
+    if b < 64:
+      setBlue (p, 31)
+    elif b < 128:
+      setBlue (p, 95)      
+    elif b < 192:
+      setBlue (p, 159)
+    else:
+      setBlue (p, 223)
   # Problem 3, Gabe initial solution, Grace Optimize or add
   #background underlay
   def GreenScreen(self):
