@@ -114,19 +114,20 @@ class image(object):
 
   # Problem 3, Gabe initial solution, Grace Optimize or add
   #background underlay
-  def chromaKey(self):
+  def GreenScreen(self):
     assert(self.pic)
     pixels = getPixels(self.pic)
     for p in pixels:
       r = getRed(p)
       g = getGreen(p)
       b = getBlue(p)
-      # Use the inverse values we used in better BW for perceptual
-      # contribution of the color components to determine if green
-      # is the dominate pixel color.
-      # Beter BW contributions r*0.299  g*0.587  b*0.114 so inverting
-      # they become            r*0.711  g*0.413  b*0.886
-      if (g * 0.413) > (r * 0.711) and (g * 0.413) > (b * 0.886):
+      l =  r*0.299 + g*0.587 + b*0.114
+      # Green should dominate both red and green, by scaling the
+      # value for gree, before comparing g * 0.75 we can then make sure
+      # it exceeds levels of blue and red by a decent margin
+      # There can be a lot of noise in dark areas of the image
+      # so l > 64 makes sure we have a bright enough pixel to judge
+      if (g*0.75 > r) and (g*0.75 > b) and (l > 64) :
         # For testing just set flagged pixels to a magenta
         # that is not likely to occur by chance in the image
         # and will make flagged pixels easy to spot
@@ -146,6 +147,7 @@ def main():
   Just step through each of the problems
   if focusing on one, comment out the others.
   '''
+  '''
   #Problem 1,
   sepia_test_image = image()
   sepia_test_image.Sepia()
@@ -155,10 +157,10 @@ def main():
   artify_test_image = image()
   artify_test_image.ArtIFy()
   artify_test_image.displayPic()
-
+  '''
   #Problem 3,
   green_Screen_test_image = image()
-  green_Screen_test_image.chromaKey()
+  green_Screen_test_image.GreenScreen()
   green_Screen_test_image.displayPic()
 
 # This way we will run by clicking the load button instead
