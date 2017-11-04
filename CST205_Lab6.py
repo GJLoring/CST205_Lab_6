@@ -9,23 +9,6 @@ CST205-40_FA17 Lab #6
 November 1st 2017
 '''
 
-
-def artRange(input):
-  '''
-  The artify transform requires a somewhat
-  abritray transform of an input value
-  preform that transform here
-  '''
-  if input < 64:
-    return 31
-  elif input < 128:
-    return 95
-  elif input < 192:
-    return 159
-  elif input < 256:
-    return 223
-
-
 def capValueByte(value):
   '''
   Keep a value in the range of valid values
@@ -108,33 +91,34 @@ class image(object):
     for p in pixels:
       # Fetch the existing pixel values and pass them
       # to the transform before setting to the new val
-      setRed(p, artRange(getRed(p)))
-      setGreen(p, artRange(getGreen(p)))
-      setBlue(p, artRange(getBlue(p)))
-    if r < 64:
-      setRed (p, 31)
-    elif r < 128:
-      setRed (p, 95)      
-    elif r < 192:
-      setRed (p, 159)
-    else:
-      setRed (p, 223)
-    if g < 64:
-      setGreen (p, 31)
-    elif g < 128:
-      setGreen (p, 95)      
-    elif g < 192:
-      setGreen (p, 159)
-    else:
-      setGreen(p, 223)
-    if b < 64:
-      setBlue (p, 31)
-    elif b < 128:
-      setBlue (p, 95)      
-    elif b < 192:
-      setBlue (p, 159)
-    else:
-      setBlue (p, 223)
+      r = getRed(p))
+      g = getGreen(p)
+      b = getBlue(p)
+	  if r < 64:
+	  	setRed (p, 31)
+	  elif r < 128:
+	    setRed (p, 95)
+	  elif r < 192:
+		setRed (p, 159)
+	  else:
+	    setRed (p, 223)
+	  if g < 64:
+	    setGreen (p, 31)
+	  elif g < 128:
+	    setGreen (p, 95)
+	  elif g < 192:
+	    setGreen (p, 159)
+	  else:
+	    setGreen(p, 223)
+	  if b < 64:
+	    setBlue (p, 31)
+	  elif b < 128:
+	    setBlue (p, 95)
+	  elif b < 192:
+	    setBlue (p, 159)
+	  else:
+	    setBlue (p, 223)
+
   # Problem 3, Gabe initial solution, Grace Optimize or add
   #background underlay
   def GreenScreen(self):
