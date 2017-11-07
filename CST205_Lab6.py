@@ -9,28 +9,50 @@ CST205-40_FA17 Lab #6
 November 1st 2017
 '''
 
-# Problem One, Christian to solve
-def Sepia(pic):
-  pixels = getPixels(pic)
+#Christian
+
+#Need help, I couldn't figure out how to pass the black and white 
+#picture from the betterBnW function to the sepia function.  Is that even possible?
+
+#What I done below is to first create a black and white picture by 
+#by calling the BnW function inside the sepia function, it works but I don't think
+#its the most efficient method
+
+#per assignment requirements, only need to change the red and blue pixels values.
+
+#creates a sepia-tone picture, it requires a black and white picture
+def Sepia():
+  print("calling Sepia")
+  bw_pic = betterBnW(pic)
+  pixels = getPixels(bw_pic)
   for p in pixels:
     r = getRed(p)
-    g = getGreen(p)
     b = getBlue(p)
-    # These values below are not from the assingment, just an aprox to get started
-    newR = 0.393 * r + 0.769 * g + 0.189 * b
-    newG = 0.349 * r + 0.686 * g + 0.168 * b
-    newB = 0.272 * r + 0.534 * g + 0.131 * b
-    if newR > 255:
-      newR = 255
-    if newG > 255:
-      newG = 255
-    if newB > 255:
-      newB = 255
+  
+    #value multiplier for red
+    if r < 63:
+      newR = 1.1 * r
+    elif r > 62 and r < 192:
+      newR = 1.15 * r
+    else:
+      newR = 1.08 * r 
+      if newR > 255:
+        newR = 255
+
+    #value multiplier for blue
+    if b < 63:
+      newB = 0.9 * b
+    elif b > 62 and b < 192:
+      newB = 0.85 * b
+    else:
+      newB = 0.93 * b
+
     setRed(p, newR)
-    setGreen(p, newG)
     setBlue(p, newB)
 
+#creates a black and white picture
 def betterBnW(pic):
+  print("calling betterBnW")
   pixels = getPixels(pic)
   for p in pixels:
     r = getRed(p)
@@ -40,7 +62,8 @@ def betterBnW(pic):
     setRed(p, l)
     setGreen(p, l)
     setBlue(p, l)
-
+  return pic
+    
 # Problem 2, Jose to solve
 def ArtIFy(pic):
   pixels = getPixels(pic)
@@ -113,7 +136,7 @@ def chromaKey(pic, bgpic):
 #Problem 1,
 filename = pickAFile()
 pic = makePicture(filename)
-Sepia(pic)
+Sepia()
 repaint(pic)
 
 
