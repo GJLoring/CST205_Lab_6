@@ -9,16 +9,17 @@ CST205-40_FA17 Lab #6
 November 1st 2017
 '''
 
-#Christian
 
-#Need help, I couldn't figure out how to pass the black and white 
-#picture from the betterBnW function to the sepia function.  Is that even possible?
-
-#What I done below is to first create a black and white picture by 
-#by calling the BnW function inside the sepia function, it works but I don't think
-#its the most efficient method
-
-#per assignment requirements, only need to change the red and blue pixels values.
+# Warm Up exercise Red eye removal
+def redEye(pic):
+  pixels = getPixels(pic)
+  for p in pixels:
+    r = getRed(p)
+    g = getGreen(p)
+    b = getBlue(p)
+    if r > (b + g) and r > 128:
+      r = (b + g) / 2
+      setRed(p, r) # Reduce red
 
 #creates a sepia-tone picture, it requires a black and white picture
 def Sepia():
@@ -98,8 +99,7 @@ def ArtIFy(pic):
     else:
       setBlue(p, 223)
 
-# Problem 3, Gabe initial solution, Grace Optimize or add
-#background underlay
+# Problem 3, replace green pixels with background image / green screen
 def chromaKey(pic, bgpic):
   pixels = getPixels(pic)
   bgPixels = getPixels(bgpic)
@@ -107,31 +107,16 @@ def chromaKey(pic, bgpic):
     r = getRed(p)
     g = getGreen(p)
     b = getBlue(p)
-    #l =  r*0.299 + g*0.587 + b*0.114
-    # Green should dominate both red and green, by scaling the
-    # value for gree, before comparing g * 0.75 we can then make sure
-    # it exceeds levels of blue and red by a decent margin
-    # There can be a lot of noise in dark areas of the image
-    # so l > 64 makes sure we have a bright enough pixel to judge
-    #if (g*0.75 > r) and (g*0.75 > b) and (l > 64) :
     if g > (b + r):
-      # For testing just set flagged pixels to a magenta
-      # that is not likely to occur by chance in the image
-      # and will make flagged pixels easy to spot
-      #g = 0
-      #b = 255
-      #r = 255
-      # Only set the pixel value if it is a flagged one
-      #otherwise we leave them alone this should be replaced with
-      # a look up from the same x,y location in another image
-      #that is atleast as tall and wide
-      #setRed(p, r)
-      #setGreen(p, g)
-      #setBlue(p, b)
       setColor(p, getColor(getPixel(bgpic, getX(p), getY(p))))
 
 
-
+#Warmup
+filename = pickAFile()
+pic = makePicture(filename)
+redEye(pic)
+repaint(pic)
+redEye
 
 #Problem 1,
 filename = pickAFile()
